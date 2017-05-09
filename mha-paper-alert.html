@@ -9,8 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../mha-paper-alert/mha-paper-alert.html">
-
+<link rel="import" href="../paper-toast/paper-toast.html">
+<link rel="import" href="../paper-button/paper-button.html">
 
 <!--
 Material design: [Snackbars & toasts](https://www.google.com/design/spec/components/snackbars-toasts.html)
@@ -80,7 +80,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     }
     </style>
 
-    <mha-paper-alert
+    <paper-toast
       id="paperAlert"
       fit-into="{{fitInto}}"
       horizontal-align="{{horizontalAlign}}"
@@ -90,8 +90,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       no-cancel-on-outside-click="{{noCancelOnOutsideClick}}"
       no-auto-focus="{{noAutoFocus}}"
     >
-    <paper-button on-click="close" class="yellow-button">{{closeText}}</paper-button>
-    </mha-paper-alert>
+    <template is="dom-if" if="{{withCloseButton}}" restamp="true">
+    <paper-button on-click="closeEvent" class="yellow-button">{{closeText}}</paper-button>
+    </template>
+    </paper-toast>
   </template>
 
   <script>
@@ -102,11 +104,16 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
 
         properties: {
+          withCloseButton:{
+            type: Boolean,
+            notify:true,
+            value:false
+          },
           closeText:{
             type: String,
-            notify:true
-
-          }
+            notify:true,
+            value: "Close now"
+          },
           /**
            * The element to fit `this` into.
            * Overridden from `Polymer.IronFitBehavior`.
@@ -179,6 +186,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         close:function(){
 
           this.$.paperAlert.close();
+        },
+        closeEvent: function(){
+          this.fire("alert-close-button");
+          this.close();
         },
         withText:function(text){
           this.text = text;
