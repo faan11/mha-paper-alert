@@ -1,0 +1,200 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-toast/paper-toast.html">
+
+
+<!--
+Material design: [Snackbars & toasts](https://www.google.com/design/spec/components/snackbars-toasts.html)
+
+`mha-paper-alert` provides a subtle notification toast. Only one `mha-paper-alert` will
+be visible on screen.
+
+Use `opened` to show the toast:
+
+Example:
+
+    <mha-paper-alert text="Hello world!" opened></mha-paper-alert>
+
+Also `open()` or `show()` can be used to show the toast:
+
+Example:
+
+    <paper-button on-click="openToast">Open Toast</paper-button>
+    <mha-paper-alert id="toast" text="Hello world!"></mha-paper-alert>
+
+    ...
+
+    openToast: function() {
+      this.$.toast.open();
+    }
+
+Set `duration` to 0, a negative number or Infinity to persist the toast on screen:
+
+Example:
+
+    <mha-paper-alert text="Terms and conditions" opened duration="0">
+      <a href="#">Show more</a>
+    </mha-paper-alert>
+
+
+### Styling
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--mha-paper-alert-background-color` | The mha-paper-alert background-color | `#323232`
+`--mha-paper-alert-color` | The mha-paper-alert color | `#f1f1f1`
+
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
+
+@group Paper Elements
+@element mha-paper-alert
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="mha-paper-alert">
+  <template>
+    <style>
+    .yellow-button {
+        text-transform: none;
+        color: orange;
+    }
+    @media only screen and (max-width: 500px) {
+      .fit-paperalert{
+        width: 100% !important;
+        min-width: 0 !important;
+        border-radius: 0 !important ;
+        margin: 0 !important;
+      }
+    }
+    </style>
+
+    <paper-toast
+      id="paperAlert"
+      fit-into="{{fitInto}}"
+      horizontal-align="{{horizontalAlign}}"
+      vertical-align="{{verticalAlign}}"
+      duration="{{duration}}"
+      text="{{text}}"
+      no-cancel-on-outside-click="{{noCancelOnOutsideClick}}"
+      no-auto-focus="{{noAutoFocus}}"
+    >
+    <paper-button on-click="close" class="yellow-button">{{closeText}}</paper-button>
+    </paper-toast>
+  </template>
+
+  <script>
+    (function() {
+
+      Polymer({
+        is: 'mha-paper-alert',
+
+
+        properties: {
+          closeText:{
+            type: String,
+            notify:true
+
+          }
+          /**
+           * The element to fit `this` into.
+           * Overridden from `Polymer.IronFitBehavior`.
+           */
+          fitInto: {
+            type: Object,
+            notify:true
+          },
+
+          /**
+           * The orientation against which to align the dropdown content
+           * horizontally relative to `positionTarget`.
+           * Overridden from `Polymer.IronFitBehavior`.
+           */
+          horizontalAlign: {
+            type: String,
+            notify:true
+          },
+
+          /**
+           * The orientation against which to align the dropdown content
+           * vertically relative to `positionTarget`.
+           * Overridden from `Polymer.IronFitBehavior`.
+           */
+          verticalAlign: {
+            type: String,
+            notify:true
+          },
+
+          /**
+           * The duration in milliseconds to show the toast.
+           * Set to `0`, a negative number, or `Infinity`, to disable the
+           * toast auto-closing.
+           */
+          duration: {
+            type: Number,
+            notify:true
+          },
+
+          /**
+           * The text to display in the toast.
+           */
+          text: {
+            type: String,
+            notify:true
+          },
+
+          /**
+           * Overridden from `IronOverlayBehavior`.
+           * Set to false to enable closing of the toast by clicking outside it.
+           */
+          noCancelOnOutsideClick: {
+            type: Boolean,
+            notify:true
+          },
+
+          /**
+           * Overridden from `IronOverlayBehavior`.
+           * Set to true to disable auto-focusing the toast or child nodes with
+           * the `autofocus` attribute` when the overlay is opened.
+           */
+          noAutoFocus: {
+            type: Boolean,
+            notify:true
+          }
+        },
+        open:function(){
+          this.$.paperAlert.open();
+        },
+        close:function(){
+
+          this.$.paperAlert.close();
+        },
+        withText:function(text){
+          this.text = text;
+          return this;
+        },
+        withDuration:function(duration){
+          this.duration = duration;
+          return this;
+        },
+
+
+
+
+
+
+      });
+    })();
+  </script>
+</dom-module>
