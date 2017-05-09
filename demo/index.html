@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 
 <head>
-  <title>paper-toast</title>
+  <title>mha-paper-alert</title>
 
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-  <link rel="import" href="../paper-toast.html">
+  <link rel="import" href="../mha-paper-alert.html">
   <link rel="import" href="../../paper-button/paper-button.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
@@ -33,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <demo-snippet class="centered-demo">
     <template>
       <paper-button raised onclick="toast0.open()">Default toast</paper-button>
-      <paper-toast id="toast0" text="This toast auto-closes after 3 seconds"></paper-toast>
+      <mha-paper-alert id="toast0" text="This toast auto-closes after 3 seconds"></mha-paper-alert>
     </template>
   </demo-snippet>
 
@@ -49,9 +49,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <paper-button raised onclick="toast1.open()">Persistent toast</paper-button>
 
-      <paper-toast id="toast1" duration="0" text="This toast will stay opened until you close it, or open another toast.">
+      <mha-paper-alert id="toast1" duration="0" text="This toast will stay opened until you close it, or open another toast.">
         <paper-button onclick="toast1.toggle()" class="yellow-button">Close now!</paper-button>
-      </paper-toast>
+      </mha-paper-alert>
     </template>
   </demo-snippet>
 
@@ -60,14 +60,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <style is="custom-style">
         #toast2 {
-          --paper-toast-background-color: red;
-          --paper-toast-color: white;
+          --mha-paper-alert-background-color: red;
+          --mha-paper-alert-color: white;
         }
       </style>
 
       <paper-button raised onclick="toast2.open()">Styled toast</paper-button>
 
-      <paper-toast id="toast2" class="fit-bottom" text="This toast is red and fits bottom!"></paper-toast>
+      <mha-paper-alert id="toast2" class="fit-bottom" text="This toast is red and fits bottom!"></mha-paper-alert>
     </template>
   </demo-snippet>
 
@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div id="container">
         <paper-button raised onclick="toast3.open()">Open toast</paper-button>
       </div>
-      <paper-toast id="toast3" class="fit-bottom" text="This toast fits into the container."></paper-toast>
+      <mha-paper-alert id="toast3" class="fit-bottom" text="This toast fits into the container."></mha-paper-alert>
 
       <script>
         toast3.fitInto = container;
