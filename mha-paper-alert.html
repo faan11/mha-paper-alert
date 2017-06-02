@@ -94,9 +94,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       no-cancel-on-outside-click="{{noCancelOnOutsideClick}}"
       no-auto-focus="{{noAutoFocus}}"
     >
+
     <template is="dom-if" if="{{withCloseButton}}" restamp="true">
     <paper-button on-click="closeEvent" class="yellow-button">{{closeText}}</paper-button>
     </template>
+    <content></content>
     </paper-toast>
   </template>
 
