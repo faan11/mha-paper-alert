@@ -93,6 +93,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       text="{{text}}"
       no-cancel-on-outside-click="{{noCancelOnOutsideClick}}"
       no-auto-focus="{{noAutoFocus}}"
+      opened="{{opened}}"
     >
 
     <template is="dom-if" if="{{withCloseButton}}" restamp="true">
@@ -182,6 +183,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
            * the `autofocus` attribute` when the overlay is opened.
            */
           noAutoFocus: {
+            type: Boolean,
+            notify:true
+          },
+          opened: {
             type: Boolean,
             notify:true
           }
